@@ -1,5 +1,7 @@
 #include "hoovergrapher/graphing/Graph.h"
 #include <algorithm>
+#include <iostream>
+#include <sstream>
 
 using namespace hoovergrapher;
 using namespace hoovergrapher::graphing;
@@ -62,6 +64,11 @@ std::set<std::shared_ptr<Vertex>> Graph::vertecies() const {
 
 bool Graph::isConnected() const {
   return false;
+}
+
+std::ostream& Graph::operator<<(std::ostream &os, const Graph &g) {
+  os << g.mImpl->v << std::endl << g,mImpl->e << std::endl;
+  return os;
 }
 
 Graph::~Graph() {}

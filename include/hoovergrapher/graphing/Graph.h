@@ -25,6 +25,9 @@ namespace hoovergrapher {
       // Used for information about the graph
       bool isConnected() const;
 
+      // Prints the Vertecies and Edges onseperate lines
+      friend std::ostream& operator<<(std::ostream &os, const Graph &g);
+
     private:
       class Impl;
       std::shared_ptr<Impl> mImpl;

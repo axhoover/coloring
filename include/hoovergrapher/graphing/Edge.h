@@ -15,6 +15,8 @@ namespace hoovergrapher {
       Edge operator=(const Edge &);
       ~Edge();
       bool operator==(const Edge &);
+      // Prints the two vertices connected to it
+      friend std::ostream& operator<<(std::ostream &os, const Edge &e);
 
     private:
       class Impl;

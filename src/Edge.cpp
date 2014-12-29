@@ -1,4 +1,5 @@
 #include "hoovergrapher/graphing/Edge.h"
+#include <sstream>
 
 using namespace hoovergrapher;
 using namespace hoovergrapher::graphing;
@@ -43,6 +44,11 @@ bool Edge::operator==(const Edge &other) {
   if(mImpl->v1 == (other.mImpl->v2) &&  mImpl->v2 == (other.mImpl->v1))
     return true;
   return false;
+}
+
+std::ostream& Edge::operator<<(std::ostream &os, const Edge &e) {
+  os << "(" << e.mImpl->v1.num() << ", " << e.mImpl->v2.num() << ")";
+  return os;
 }
 
 Edge::~Edge() {}

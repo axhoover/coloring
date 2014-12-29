@@ -1,4 +1,5 @@
 #include "hoovergrapher/graphing/Vertex.h"
+#include <sstream>
 
 using namespace hoovergrapher;
 using namespace hoovergrapher::graphing;
@@ -47,6 +48,15 @@ void Vertex::color(const coloring::Color &c) {
 
 coloring::Color Vertex::color() const {
   return mImpl->color;
+}
+
+int Vertex::num() const {
+  return mImpl->num;
+}
+
+std::ostream& Vertex::operator<<(std::ostream &os, const Vertex &v) {
+  os << "(" << v.mImpl->num << ", " << v.mImpl->color << ")";
+  return os;
 }
 
 Vertex::~Vertex() {}

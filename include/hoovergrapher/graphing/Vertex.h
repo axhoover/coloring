@@ -20,6 +20,10 @@ namespace hoovergrapher {
       // Used for coloring graphs
       void color(const coloring::Color &);
       coloring::Color color() const;
+      int num() const;
+
+      // Prints the number and color of the vertex
+      friend std::ostream& operator<<(std::ostream &os, const Vertex &v);
 
     private:
       class Impl;
