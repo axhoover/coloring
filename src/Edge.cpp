@@ -38,6 +38,14 @@ Edge Edge::operator=(const Edge &other) {
   return *this;
 }
 
+Vertex Edge::vertex1() const {
+  return mImpl->v1;
+}
+
+Vertex Edge::vertex2() const {
+  return mImpl->v2;
+}
+
 bool Edge::operator==(const Edge &other) {
   if(mImpl->v1 == (other.mImpl->v1) &&  mImpl->v2 == (other.mImpl->v2))
     return true;
@@ -46,8 +54,8 @@ bool Edge::operator==(const Edge &other) {
   return false;
 }
 
-std::ostream& Edge::operator<<(std::ostream &os, const Edge &e) {
-  os << "(" << e.mImpl->v1.num() << ", " << e.mImpl->v2.num() << ")";
+std::ostream& hoovergrapher::graphing::operator<<(std::ostream &os, const Edge &e) {
+  os << "(" << e.vertex1().num() << ", " << e.vertex2().num() << ")";
   return os;
 }
 

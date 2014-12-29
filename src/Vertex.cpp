@@ -54,8 +54,8 @@ int Vertex::num() const {
   return mImpl->num;
 }
 
-std::ostream& Vertex::operator<<(std::ostream &os, const Vertex &v) {
-  os << "(" << v.mImpl->num << ", " << v.mImpl->color << ")";
+std::ostream& hoovergrapher::graphing::operator<<(std::ostream &os, const Vertex &v) {
+  os << "(" << v.num() << ", " << v.color().name() << ")";
   return os;
 }
 
