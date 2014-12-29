@@ -2,6 +2,7 @@
 #define __GRAPH_H__
 
 #include <memory>
+#include <set>
 #include "hoovergrapher/graphing/Vertex.h"
 #include "hoovergrapher/graphing/Edge.h"
 namespace hoovergrapher {
@@ -15,11 +16,11 @@ namespace hoovergrapher {
       ~Graph();
 
       // Used for editting the Graph
-      void addVertex(const Vertex &);
-      void addEdge(const Edge &);
-      void addEdge(const Vertex &, const Vertex &);
-      std::vector<Edge> edges() const;
-      std::vector<Vertex> vertecies() const;
+      bool addVertex(const Vertex &);
+      bool addEdge(const Edge &);
+      bool addEdge(const Vertex &, const Vertex &);
+      std::set<std::shared_ptr<Edge>> edges() const;
+      std::set<std::shared_ptr<Vertex>> vertecies() const;
 
       // Used for information about the graph
       bool isConnected() const;

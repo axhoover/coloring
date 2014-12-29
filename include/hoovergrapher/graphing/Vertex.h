@@ -10,12 +10,15 @@ namespace hoovergrapher {
     public:
       // Canonical Form
       Vertex();
+      Vertex(int n);
+      Vertex(const coloring::Color &, int n);
       Vertex(const Vertex &);
       Vertex operator=(const Vertex &);
       ~Vertex();
+      bool operator==(const Vertex &);
 
       // Used for coloring graphs
-      void color(const Color &);
+      void color(const coloring::Color &);
       coloring::Color color() const;
 
     private:

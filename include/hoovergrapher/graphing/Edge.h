@@ -14,6 +14,7 @@ namespace hoovergrapher {
       Edge(const Edge &);
       Edge operator=(const Edge &);
       ~Edge();
+      bool operator==(const Edge &);
 
     private:
       class Impl;
