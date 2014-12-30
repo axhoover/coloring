@@ -20,9 +20,11 @@ namespace hoovergrapher {
       ~Solver();
 
       // Sets the colors that the user would like to use for the colorring
-      void set_colors(std::vector<Color> colors);
+      void set_colors(const std::vector<Color> &);
       // Finds a solution for the graph with the fewest colors
       bool solve();
+      // Statuc member function that just solves the graph
+      static bool solve(graphing::Graph &, const std::vector<Color> &);
       // Return colorred graph. Calls solve if not already solved
       graphing::Graph solution_graph();
       // Returns the number of colors required or the number specified

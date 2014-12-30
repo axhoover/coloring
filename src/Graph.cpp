@@ -14,17 +14,20 @@ public:
   std::set<Edge> e;
 };
 
-Graph::Graph() : mImpl(new Impl) {}
+Graph::Graph() : mImpl(new Impl) {
+  mImpl->v = std::set<Vertex>();
+  mImpl->e = std::set<Edge>();
+}
 
 Graph::Graph(const Graph &other) {
-  mImpl->v = other.mImpl->v;
-  mImpl->e = other.mImpl->e;
+  mImpl->v = std::set<Vertex>(other.mImpl->v);
+  mImpl->e = std::set<Edge>(other.mImpl->e);
 }
 
 Graph Graph::operator=(const Graph &other) {
   if (this != &other) {
-    mImpl->v = other.mImpl->v;
-    mImpl->e = other.mImpl->e;
+    mImpl->v = std::set<Vertex>(other.mImpl->v);
+    mImpl->e = std::set<Edge>(other.mImpl->e);
   }
   return *this;
 }
@@ -42,6 +45,10 @@ bool Graph::addVertex(const Vertex &ver) {
 bool Graph::addEdge(const Edge &ed) {
   if(mImpl->e.find(ed) == mImpl->e.end()) {
     mImpl->e.insert(ed);
+    if(mImpl->v.find(ed.vertex1()) == mImpl->v.end())
+      mImpl->v.insert(ed.vertex1());
+    if(mImpl->v.find(ed.vertex2()) == mImpl->v.end())
+      mImpl->v.insert(ed.vertex2());
     return true;
   }
   else {
@@ -63,6 +70,7 @@ std::set<Vertex> Graph::vertices() const {
 }
 
 bool Graph::isConnected() const {
+  // Placeholder will be implemented
   return false;
 }
 

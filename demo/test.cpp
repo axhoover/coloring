@@ -34,8 +34,7 @@ int main(int argc, char* argv[]) {
   colors.push_back(Color("Green"));
   colors.push_back(Color("Blue"));
   colors.push_back(Color("yellow"));
-  Solver s(g);
-  s.set_colors(colors);
-  std::cout << s.solution_graph() << std::endl;
+  std::cout << Solver::solve(g, colors) << std::endl;
+  std::cout << &g << std::endl;
   return 0;
 }

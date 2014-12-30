@@ -38,8 +38,12 @@ Vertex Vertex::operator=(const Vertex &other) {
   return *this;
 }
 
-bool Vertex::operator==(const Vertex &other) {
+bool Vertex::operator==(const Vertex &other) const {
   return mImpl->num == other.mImpl->num;
+}
+
+bool Vertex::operator<(const Vertex &other) const {
+  return mImpl->num < other.mImpl->num;
 }
 
 void Vertex::color(const coloring::Color &c) {

@@ -15,7 +15,8 @@ namespace hoovergrapher {
       Vertex(const Vertex &);
       Vertex operator=(const Vertex &);
       ~Vertex();
-      bool operator==(const Vertex &);
+      bool operator==(const Vertex &) const;
+      bool operator<(const Vertex &) const;
 
       // Used for coloring graphs
       void color(const coloring::Color &);

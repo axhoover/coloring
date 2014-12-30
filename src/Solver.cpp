@@ -19,15 +19,15 @@ public:
   bool graph_solved() {
     std::set<graphing::Edge> e = graph.edges();
     for(std::set<graphing::Edge>::iterator i = e.begin(); i!=e.end(); i++){
-      Edge ed = *i;
-      if(ed->vertex1().color() == ed->vertex2().color())
+      graphing::Edge ed = *i;
+      if(ed.vertex1().color() == ed.vertex2().color())
         return false;
     };
     return true;
   }
 
   bool solve_graph() {
-    std::set<raphing::Vertex> v = graph.vertices();
+    std::set<graphing::Vertex> v = graph.vertices();
     int size = v.size();
     if(v.empty()) {
       return false;
@@ -86,7 +86,7 @@ Solver Solver::operator=(const Solver &other) {
   return *this;
 }
 
-void Solver::set_colors(std::vector<Color> colors) {
+void Solver::set_colors(const std::vector<Color> &colors) {
   mImpl->colors = colors;
 }
 
@@ -108,6 +108,14 @@ bool Solver::solve() {
   if(mImpl->num_colors == -1) return false;
   else mImpl->is_solved = true;
   return mImpl->is_solved;
+}
+
+bool Solver::solve(graphing::Graph &g, const std::vector<Color> &colors) {
+  Solver s(g);
+  s.set_colors(colors);
+  bool r = s.solve();
+  g = s.solution_graph();
+  return r;
 }
 
 Solver::~Solver() {}
