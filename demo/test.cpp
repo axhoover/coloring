@@ -9,7 +9,7 @@
 #include "hoovergrapher/graphing/Graph.h"
 
 #include "hoovergrapher/coloring/Color.h"
-//#inlcude "hoovergrapher/coloring/Solver.h"
+#include "hoovergrapher/coloring/Solver.h"
 
 using namespace hoovergrapher::graphing;
 using namespace hoovergrapher::coloring;
@@ -18,9 +18,24 @@ int main(int argc, char* argv[]) {
   Graph g = Graph();
   Vertex v0 = Vertex(0);
   Vertex v1(1);
+  Vertex v2(2);
+  Vertex v3(3);
   g.addVertex(v0);
   g.addVertex(v1);
+  g.addVertex(v2);
+  g.addVertex(v3);
   g.addEdge(v0, v1);
-  std::cout << g << std::endl;
+  g.addEdge(v0, v2);
+  g.addEdge(v1, v2);
+  g.addEdge(v0, v3);
+  g.addEdge(v1, v3);
+  std::vector<Color> colors;
+  colors.push_back(Color("Red"));
+  colors.push_back(Color("Green"));
+  colors.push_back(Color("Blue"));
+  colors.push_back(Color("yellow"));
+  Solver s(g);
+  s.set_colors(colors);
+  std::cout << s.solution_graph() << std::endl;
   return 0;
 }

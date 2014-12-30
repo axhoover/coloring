@@ -27,6 +27,10 @@ Color Color::operator=(const Color &other) {
   return *this;
 }
 
+bool Color::operator==(const Color &other) {
+  return name() == other.name();
+}
+
 std::string Color::name() const {
   return mImpl->color_name;
 }

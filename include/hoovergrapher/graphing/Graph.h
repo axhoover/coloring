@@ -19,13 +19,13 @@ namespace hoovergrapher {
       bool addVertex(const Vertex &);
       bool addEdge(const Edge &);
       bool addEdge(const Vertex &, const Vertex &);
-      std::set<std::shared_ptr<Edge>> edges() const;
-      std::set<std::shared_ptr<Vertex>> vertecies() const;
+      std::set<Edge> edges() const;
+      std::set<Vertex> vertices() const;
 
       // Used for information about the graph
       bool isConnected() const;
 
-      // Prints the Vertecies and Edges onseperate lines
+      // Prints the vertices and Edges onseperate lines
       friend std::ostream& operator<<(std::ostream &os, const Graph &g);
 
     private:

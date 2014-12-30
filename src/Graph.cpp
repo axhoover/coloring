@@ -1,5 +1,6 @@
 #include "hoovergrapher/graphing/Graph.h"
 #include <algorithm>
+#include <set>
 #include <iterator>
 #include <iostream>
 #include <sstream>
@@ -9,8 +10,8 @@ using namespace hoovergrapher::graphing;
 
 class Graph::Impl {
 public:
-  std::set<std::shared_ptr<Vertex>> v;
-  std::set<std::shared_ptr<Edge>> e;
+  std::set<Vertex> v;
+  std::set<Edge> e;
 };
 
 Graph::Graph() : mImpl(new Impl) {}
@@ -29,9 +30,8 @@ Graph Graph::operator=(const Graph &other) {
 }
 
 bool Graph::addVertex(const Vertex &ver) {
-  std::shared_ptr<Vertex> ver_ptr(new Vertex(ver));
-  if(mImpl->v.find(ver_ptr) == mImpl->v.end()) {
-    mImpl->v.insert(ver_ptr);
+  if(mImpl->v.find(ver) == mImpl->v.end()) {
+    mImpl->v.insert(ver);
     return true;
   }
   else {
@@ -40,9 +40,8 @@ bool Graph::addVertex(const Vertex &ver) {
 }
 
 bool Graph::addEdge(const Edge &ed) {
-  std::shared_ptr<Edge> ed_ptr(new Edge(ed));
-  if(mImpl->e.find(ed_ptr) == mImpl->e.end()) {
-    mImpl->e.insert(ed_ptr);
+  if(mImpl->e.find(ed) == mImpl->e.end()) {
+    mImpl->e.insert(ed);
     return true;
   }
   else {
@@ -55,11 +54,11 @@ bool Graph::addEdge(const Vertex &v1, const Vertex &v2) {
   return addEdge(ed);
 }
 
-std::set<std::shared_ptr<Edge>> Graph::edges() const {
+std::set<Edge> Graph::edges() const {
   return mImpl->e;
 }
 
-std::set<std::shared_ptr<Vertex>> Graph::vertecies() const {
+std::set<Vertex> Graph::vertices() const {
   return mImpl->v;
 }
 
@@ -68,18 +67,16 @@ bool Graph::isConnected() const {
 }
 
 std::ostream& hoovergrapher::graphing::operator<<(std::ostream &os, const Graph &g) {
-  std::set<std::shared_ptr<Vertex>> v = g.vertecies();
-  std::set<std::shared_ptr<Edge>> e = g.edges();
-  os << std::endl << "Vertecies: ";
-  for(std::set<std::shared_ptr<Vertex>>::iterator i = v.begin(); i!=v.end(); i++){
-    std::shared_ptr<Vertex> ver = *i;
-    os << *ver << ", ";
-  };
+  std::set<Vertex> v = g.vertices();
+  std::set<Edge> e = g.edges();
+  os << std::endl << "vertices: ";
+  for(std::set<Vertex>::iterator i = v.begin(); i!=v.end(); i++){
+    os << *i << ", ";
+  }
   os << std::endl << "Edges: ";
-  for(std::set<std::shared_ptr<Edge>>::iterator i = e.begin(); i!=e.end(); i++){
-    std::shared_ptr<Edge> ed = *i;
-    os << *ed << ", ";
-  };
+  for(std::set<Edge>::iterator i = e.begin(); i!=e.end(); i++){
+    os << *i << ", ";
+  }
   os << std::endl;
   return os;
 }

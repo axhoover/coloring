@@ -13,6 +13,7 @@ namespace hoovergrapher {
       Color(const std::string &);
       Color(const Color &);
       Color operator=(const Color &);
+      bool operator==(const Color &);
       ~Color();
       std::string name() const;
 
