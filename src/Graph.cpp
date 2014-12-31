@@ -20,14 +20,14 @@ Graph::Graph() : mImpl(new Impl) {
 }
 
 Graph::Graph(const Graph &other) {
-  mImpl->v = std::set<Vertex>(other.mImpl->v);
-  mImpl->e = std::set<Edge>(other.mImpl->e);
+  mImpl->v = other.vertices();
+  mImpl->e = other.edges();
 }
 
 Graph Graph::operator=(const Graph &other) {
   if (this != &other) {
-    mImpl->v = std::set<Vertex>(other.mImpl->v);
-    mImpl->e = std::set<Edge>(other.mImpl->e);
+    mImpl->v = other.vertices();
+    mImpl->e = other.edges();
   }
   return *this;
 }
@@ -77,7 +77,7 @@ bool Graph::isConnected() const {
 std::ostream& hoovergrapher::graphing::operator<<(std::ostream &os, const Graph &g) {
   std::set<Vertex> v = g.vertices();
   std::set<Edge> e = g.edges();
-  os << std::endl << "vertices: ";
+  os << std::endl << "Vertices: ";
   for(std::set<Vertex>::iterator i = v.begin(); i!=v.end(); i++){
     os << *i << ", ";
   }
