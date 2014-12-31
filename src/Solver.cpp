@@ -16,11 +16,11 @@ public:
   bool is_solved;
   std::vector<Color> colors;
 
-  bool graph_solved() {
+  bool graph_solved(int[] *name_array) {
     std::set<graphing::Edge> e = graph.edges();
     for(std::set<graphing::Edge>::iterator i = e.begin(); i!=e.end(); i++){
       graphing::Edge ed = *i;
-      if(ed.vertex1().color() == ed.vertex2().color())
+      if(name_array[ed.vertex1().num()] == name_array[ed.vertex2().num()])
         return false;
     };
     return true;
@@ -38,9 +38,17 @@ public:
     }
     // Bruteforce
     int *col_array = new int[size];
+    int *name_array = new std::string[size];
     for(int i = 0; i < size; i++) {col_array[i] = 0;}
-    for(int i = 0; i < pow(colors.size() - 1, size); i++) {
-      if(graph_solved()) {
+    for(int i = 0; i < pow(colors.size(), size); i++) {
+      for(int i = 0; i < size; i++) {
+        name_array[i] = colors[col_array[i]];
+      }
+      if(graph_solved(name_array)) {
+        for (int i = 0; i < size; i++) {
+          if(col_array[i] > num_colors)
+            num_colors = col_array[i];
+        }
         delete[] col_array;
         return true;
       }
@@ -55,6 +63,7 @@ public:
       }
     }
     delete[] col_array;
+    std::cout << "No Solution" << std::endl;
     return false;
   }
 };

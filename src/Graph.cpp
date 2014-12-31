@@ -19,7 +19,7 @@ Graph::Graph() : mImpl(new Impl) {
   mImpl->e = std::set<Edge>();
 }
 
-Graph::Graph(const Graph &other) {
+Graph::Graph(const Graph &other) : mImpl(new Impl) {
   mImpl->v = other.vertices();
   mImpl->e = other.edges();
 }
